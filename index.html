@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ОтельБук - бронирование</title>
+    <title>Сладкие сны - бронирование</title>
     <style>
         * {
             margin: 0;
@@ -212,9 +212,9 @@
 <script>
     // ----- данные -----
     const roomTypes = {
-        STANDARD: { name: "Стандартный", price: 5000, features: "18 м², двуспальная кровать, TV", icon: "🛏️" },
-        STUDIO: { name: "Студия", price: 8000, features: "25 м², кухня, холодильник, диван", icon: "🍳" },
-        LUX: { name: "Люкс", price: 12000, features: "40 м², джакузи, балкон, гостиная", icon: "✨" }
+        STANDARD: { name: "Стандартный", price: 5000, features: "18 м², двуспальная кровать, TV", icon: "" },
+        STUDIO: { name: "Студия", price: 8000, features: "25 м², кухня, холодильник, диван", icon: "" },
+        LUX: { name: "Люкс", price: 12000, features: "40 м², джакузи, балкон, гостиная", icon: "" }
     };
 
     // генерация 12 номеров
@@ -578,7 +578,7 @@
 
         let html = `
             <div class="header">
-                <h1>ОтельБук</h1>
+                <h1>Сладкие сны</h1>
                 <div class="slogan">Бронирование номера</div>
             </div>
             <div class="booking-container">
@@ -709,7 +709,7 @@
 
             if (Object.keys(errors).length > 0) return;
 
-            showMessage(`✅ Заявка на номер "${selectedRoom.categoryName}" успешно отправлена!`);
+            showMessage(`Заявка на номер "${selectedRoom.categoryName}" успешно отправлена!`);
             setTimeout(() => {
                 renderCatalog();
             }, 2000);
