@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>КРЯ-ТЕСТ: безопасность за рабочим столом ПК</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОтельБук - бронирование</title>
     <style>
         * {
             margin: 0;
@@ -12,573 +12,715 @@
         }
 
         body {
-            background: radial-gradient(circle at 20% 30%, #0a0f1e, #03050b);
-            font-family: 'Segoe UI', 'Courier New', 'Fira Code', monospace;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 1rem;
-        }
-
-        /* ГЛАВНЫЙ КОНТЕЙНЕР — СТИЛЬ "КРЯ" = жёсткий техно-панк */
-        .quiz-container {
-            max-width: 950px;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(2px);
-            border: 2px solid #ff3b3b;
-            border-radius: 32px;
-            box-shadow: 0 0 20px #ff3b3b55, 0 10px 35px rgba(0,0,0,0.7), inset 0 0 15px rgba(255,60,60,0.2);
-            padding: 1.8rem;
-            transition: all 0.2s ease;
-        }
-
-        .danger-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 2px dashed #ff5555;
-            padding-bottom: 0.6rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        h1 {
-            font-size: 1.9rem;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ff5e5e, #ffb347);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 5px #ff2a2a40;
-            font-weight: 800;
-        }
-        .badge {
-            background: #1f1b1b;
-            border: 1px solid #ff3b3b;
-            color: #ff7a7a;
-            padding: 0.3rem 0.9rem;
-            border-radius: 60px;
-            font-family: monospace;
-            font-weight: bold;
-            font-size: 0.9rem;
-            backdrop-filter: blur(4px);
-        }
-
-        .progress-area {
-            margin-bottom: 2rem;
-        }
-        .progress-stats {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: #ffb7b7;
-            margin-bottom: 0.4rem;
-        }
-        .progress-bar-bg {
-            background: #221c1c;
-            border-radius: 40px;
-            height: 14px;
-            border: 1px solid #ff5e5e;
-            overflow: hidden;
-        }
-        .progress-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #ff3b3b, #ff9f4a);
-            border-radius: 40px;
-            transition: width 0.25s cubic-bezier(0.2, 1.2, 0.8, 1);
-            box-shadow: 0 0 5px #ff6a00;
-        }
-
-        .question-card {
-            background: #0c0c14e6;
-            border-left: 8px solid #ff3b3b;
-            padding: 1.5rem 1.2rem;
-            border-radius: 28px;
-            margin-bottom: 1.8rem;
-            transition: all 0.2s;
-            box-shadow: 0 8px 0 #2a0c0c;
-        }
-        .question-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.4rem;
-            color: #fff0e0;
-            text-shadow: 0 1px 2px black;
-            line-height: 1.3;
-            letter-spacing: -0.2px;
-        }
-        .options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-        .option {
-            background: #11131f;
-            border: 1px solid #3a2a2a;
-            border-radius: 60px;
-            padding: 0.8rem 1.2rem;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            backdrop-filter: blur(4px);
-        }
-        .option:hover {
-            background: #241e1e;
-            border-color: #ff7b5c;
-            transform: scale(0.99);
-        }
-        .option.selected {
-            background: #4a1818;
-            border: 2px solid #ff4d4d;
-            box-shadow: 0 0 8px #ff3131;
-        }
-        .option-marker {
-            width: 32px;
-            height: 32px;
-            background: #2a1e1e;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-right: 1rem;
-            font-weight: bold;
-            color: #ffaeae;
-            font-family: monospace;
-            font-size: 1.2rem;
-        }
-        .option-text {
-            font-size: 1rem;
-            line-height: 1.3;
-            color: #f2e0d0;
-            font-weight: 500;
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-        }
-        button {
-            background: #1f1b1f;
-            border: 2px solid #ff5a5a;
-            color: #ffbbbb;
-            font-weight: bold;
-            padding: 0.75rem 1.8rem;
-            border-radius: 60px;
-            font-size: 1rem;
-            font-family: monospace;
-            cursor: pointer;
-            transition: 0.15s linear;
-            letter-spacing: 1px;
-        }
-        button:hover:not(:disabled) {
-            background: #ff3b3b;
+            background: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: black;
-            border-color: #ffcf9a;
-            box-shadow: 0 0 12px red;
-            transform: scale(0.97);
         }
-        button:disabled {
-            opacity: 0.4;
-            border-color: #6f4e4e;
-            cursor: not-allowed;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
         }
-        .submit-btn {
-            background: #a12222;
-            border-color: #ff9f6e;
-            color: #fff2dd;
-            font-size: 1.2rem;
-            padding: 0.8rem 1rem;
-            width: 100%;
-            margin-top: 0.5rem;
+
+        .header {
+            border-bottom: 2px solid black;
+            padding: 15px 0;
+            margin-bottom: 25px;
         }
-        .result-area {
-            margin-top: 1.8rem;
-            background: #000000aa;
-            border-radius: 28px;
-            padding: 1.2rem;
-            border: 1px solid #f75c5c;
-            text-align: center;
-            font-size: 1.2rem;
+        .header h1 {
+            font-size: 28px;
             font-weight: bold;
-            color: #ffdd99;
-            backdrop-filter: blur(8px);
         }
-        .restart-btn {
-            background: #2a1a1a;
-            margin-top: 0.8rem;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-        }
-        footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.7rem;
-            color: #ff7b7b80;
+        .slogan {
+            font-size: 14px;
+            color: #333;
+            margin-top: 5px;
         }
 
-        @media (max-width: 580px) {
-            .quiz-container {
-                padding: 1rem;
-            }
-            .question-text {
-                font-size: 1.2rem;
-            }
-            .option-text {
-                font-size: 0.85rem;
-            }
+        .footer {
+            border-top: 1px solid #aaa;
+            padding: 15px 0;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #333;
+        }
+        .contacts {
+            margin-top: 8px;
+            line-height: 1.5;
         }
 
-        @keyframes kriaAlert {
-            0% { text-shadow: 0 0 0 red; background: #a12222;}
-            100% { text-shadow: 0 0 6px orange; background: #ff4c4c;}
+        .filter-bar {
+            border: 1px solid black;
+            padding: 15px;
+            margin-bottom: 25px;
+            background: #f9f9f9;
         }
-        .alert-pulse {
-            animation: kriaAlert 0.5s ease-in-out 3;
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .filter-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        .btn {
+            background: white;
+            border: 1px solid black;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background: #eee;
+        }
+
+        .catalog-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .room-card {
+            border: 1px solid black;
+            width: calc(33.333% - 14px);
+            min-width: 250px;
+            background: white;
+        }
+        .room-img {
+            background: #eaeaea;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            border-bottom: 1px solid #aaa;
+        }
+        .room-info {
+            padding: 12px;
+        }
+        .room-category {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .room-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .room-features {
+            font-size: 13px;
+            margin: 8px 0;
+            color: #222;
+        }
+        .book-btn {
+            background: white;
+            border: 1px solid black;
+            padding: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .book-btn:hover {
+            background: #ddd;
+        }
+
+        .booking-container {
+            border: 1px solid black;
+            padding: 20px;
+            max-width: 500px;
+            background: white;
+        }
+        .selected-room-info {
+            border: 1px solid #aaa;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #f5f5f5;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            padding-right: 30px;
+            border: 1px solid black;
+            font-size: 14px;
+            background: white;
+        }
+        .clear-btn {
+            position: absolute;
+            right: 8px;
+            top: 28px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            color: #888;
+            padding: 0 5px;
+        }
+        .clear-btn:hover {
+            color: black;
+        }
+        .error-msg {
+            color: #cc0000;
+            font-size: 12px;
+            margin-top: 4px;
+            display: block;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: black;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .hint {
+            font-size: 11px;
+            color: #555;
+            margin-top: 3px;
+        }
+
+        @media (max-width: 800px) {
+            .room-card {
+                width: calc(50% - 10px);
+            }
+        }
+        @media (max-width: 550px) {
+            .room-card {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-
-<div class="quiz-container" id="quizRoot">
-    <div class="danger-header">
-        <h1>⚠️ КРЯ-ТЕСТ: ТБ за ПК ⚠️</h1>
-        <div class="badge">электробезопасность + эргономика</div>
-    </div>
-
-    <div class="progress-area">
-        <div class="progress-stats">
-            <span>🔴 уровень угрозы: <span id="answeredCount">0</span>/<span id="totalQuestions">8</span></span>
-            <span>⚡ выживаемость</span>
-        </div>
-        <div class="progress-bar-bg">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-    </div>
-
-    <div id="questionsContainer"></div>
-
-    <div class="nav-buttons">
-        <button id="prevBtn" disabled>◀ КРЯ-НАЗАД</button>
-        <button id="nextBtn">ДАЛЕЕ ▶</button>
-    </div>
-
-    <button id="submitBtn" class="submit-btn">🔥 ЗАВЕРШИТЬ ТЕСТ & ПОЛУЧИТЬ ВЕРДИКТ 🔥</button>
-
-    <div id="resultPanel" class="result-area" style="display: none;"></div>
-    <footer>⚡ каждый неверный ответ = риск для спины и проводки ⚡</footer>
-</div>
+<div class="container" id="app"></div>
 
 <script>
-    // ---------- 8 вопросов по ТБ за компьютером ----------
-    const questionsData = [
-        {
-            text: "1. Как правильно расположить монитор на рабочем столе для безопасности глаз и осанки?",
-            options: [
-                "На расстоянии вытянутой руки, верхний край экрана на уровне глаз",
-                "Максимально близко, чтобы лучше видеть детали",
-                "Сбоку от клавиатуры, на расстоянии 10 см от лица",
-                "Под углом 45°, смотреть на экран снизу вверх"
-            ],
-            correct: 0
-        },
-        {
-            text: "2. Что НЕЛЬЗЯ делать с системным блоком и проводами питания?",
-            options: [
-                "Вытирать пыль сухой тряпкой при выключенном ПК",
-                "Ставить блок на ковролин или закрывать вентиляцию",
-                "Использовать ИБП для защиты от скачков",
-                "Регулярно проверять целостность кабелей"
-            ],
-            correct: 1
-        },
-        {
-            text: "3. Какая поза считается эргономичной при длительной работе за ПК?",
-            options: [
-                "Стул максимально низко, ноги скрещены под столом",
-                "Спина прямая, поясница поддерживается, стопы на полу",
-                "Лёжа на животе перед ноутбуком на диване",
-                "Руки вытянуты вперёд, клавиатура на коленях"
-            ],
-            correct: 1
-        },
-        {
-            text: "4. Что из перечисленного — грубое нарушение пожарной безопасности?",
-            options: [
-                "Использование удлинителя без заземления",
-                "Оставлять включённый ПК без присмотра на ночь",
-                "Накрывать системный блок плотной тканью для тишины",
-                "Подключение трех устройств в один тройник"
-            ],
-            correct: 2
-        },
-        {
-            text: "5. Как часто рекомендуется делать перерывы при непрерывной работе за компьютером?",
-            options: [
-                "Раз в 4 часа на 20 минут",
-                "Каждые 45-60 минут по 5-10 минут, разминать шею/кисти",
-                "Только когда устали глаза, примерно раз в 3 часа",
-                "Перерывы не нужны, если пить кофе"
-            ],
-            correct: 1
-        },
-        {
-            text: "6. При запахе гари или искрении из блока питания нужно:",
-            options: [
-                "Продолжить работу, возможно это конденсатор греется",
-                "Немедленно обесточить ПК (выключить кнопкой или из розетки), вызвать специалиста",
-                "Полить водой искрящийся участок",
-                "Стукнуть по блоку питания, чтобы искры пропали"
-            ],
-            correct: 1
-        },
-        {
-            text: "7. Какое требование к освещению рабочего места с ПК правильное?",
-            options: [
-                "Полная темнота, только свет монитора — глаза меньше устают",
-                "Свет от окна должен падать прямо на экран",
-                "Основной источник света сбоку, без бликов на мониторе, лампа не слепит в глаза",
-                "Подсветка RGB за монитором полностью заменяет общее освещение"
-            ],
-            correct: 2
-        },
-        {
-            text: "8. Как правильно организовать кабели питания под столом?",
-            options: [
-                "Связать все провода в тугой жгут и прижать ножкой стола",
-                "Разместить так, чтобы они не перегибались, не перетирались и не создавали путаницу, использовать кабель-каналы",
-                "Оставить провода петлями на полу — для лучшей вентиляции",
-                "Использовать удлинитель без заземления, лежащий в луже"
-            ],
-            correct: 1
-        }
-    ];
+    // ----- данные -----
+    const roomTypes = {
+        STANDARD: { name: "Стандартный", price: 5000, features: "18 м², двуспальная кровать, TV", icon: "🛏️" },
+        STUDIO: { name: "Студия", price: 8000, features: "25 м², кухня, холодильник, диван", icon: "🍳" },
+        LUX: { name: "Люкс", price: 12000, features: "40 м², джакузи, балкон, гостиная", icon: "✨" }
+    };
 
-    // Состояние приложения
-    let userAnswers = new Array(questionsData.length).fill(null);   // храним индексы выбранных ответов (0..3) или null
-    let currentQuestionIndex = 0;      // 0-based
-    let quizCompleted = false;          // заблокировать ли завершение повторно
-
-    // DOM элементы
-    const questionsContainer = document.getElementById('questionsContainer');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const submitBtn = document.getElementById('submitBtn');
-    const resultPanel = document.getElementById('resultPanel');
-    const answeredCountSpan = document.getElementById('answeredCount');
-    const totalQuestionsSpan = document.getElementById('totalQuestions');
-    const progressFill = document.getElementById('progressFill');
-
-    totalQuestionsSpan.textContent = questionsData.length;
-
-    // Функция обновления счётчика ответов и прогресс-бара
-    function updateProgress() {
-        const answered = userAnswers.filter(a => a !== null).length;
-        answeredCountSpan.textContent = answered;
-        const percent = (answered / questionsData.length) * 100;
-        progressFill.style.width = `${percent}%`;
+    // генерация 12 номеров
+    let allRooms = [];
+    for (let i = 1; i <= 12; i++) {
+        let cat;
+        if (i <= 4) cat = "STANDARD";
+        else if (i <= 8) cat = "STUDIO";
+        else cat = "LUX";
+        allRooms.push({
+            id: i,
+            category: cat,
+            categoryName: roomTypes[cat].name,
+            price: roomTypes[cat].price,
+            characteristics: roomTypes[cat].features,
+            imageIcon: roomTypes[cat].icon
+        });
     }
 
-    // рендерим ТОЛЬКО текущий вопрос (постраничная навигация)
-    function renderCurrentQuestion() {
-        const question = questionsData[currentQuestionIndex];
-        const selectedIdx = userAnswers[currentQuestionIndex];
-        
-        let optionsHtml = '';
-        const letters = ['A', 'B', 'C', 'D'];
-        question.options.forEach((opt, idx) => {
-            const isSelected = (selectedIdx === idx);
-            const selectedClass = isSelected ? 'selected' : '';
-            optionsHtml += `
-                <div class="option ${selectedClass}" data-opt-index="${idx}">
-                    <div class="option-marker">${letters[idx]}</div>
-                    <div class="option-text">${escapeHtml(opt)}</div>
-                </div>
-            `;
-        });
+    let selectedFilters = [];
+    let selectedRoom = null;
 
-        const fullHtml = `
-            <div class="question-card" id="activeQuestionCard">
-                <div class="question-text">${escapeHtml(question.text)}</div>
-                <div class="options-list" id="optionsList">
-                    ${optionsHtml}
+    function getRandomItems(arr, count) {
+        let copy = [...arr];
+        for (let i = copy.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy.slice(0, count);
+    }
+
+    function filterRoomsByCategory(rooms, cats) {
+        if (cats.length === 0) return rooms;
+        return rooms.filter(r => cats.includes(r.category));
+    }
+
+    function getDisplayRooms() {
+        let filtered = filterRoomsByCategory(allRooms, selectedFilters);
+        return getRandomItems(filtered, 6);
+    }
+
+    // ========== ТЕЛЕФОН: умный автоформат ==========
+    function setupPhoneInput(input) {
+        let lastValue = '';
+        
+        input.addEventListener('input', function(e) {
+            let cursorPos = this.selectionStart;
+            
+            // извлекаем только цифры
+            let digits = this.value.replace(/\D/g, '');
+            
+            // максимум 11 цифр (7 + 10)
+            if (digits.length > 11) digits = digits.slice(0, 11);
+            
+            // форматируем
+            let formatted = '';
+            if (digits.length === 0) {
+                formatted = '';
+            } else {
+                formatted = '+' + digits[0];
+                if (digits.length >= 2) {
+                    formatted += '(' + digits.slice(1, 4);
+                }
+                if (digits.length >= 4) {
+                    formatted += ')' + digits.slice(4, 7);
+                }
+                if (digits.length >= 7) {
+                    formatted += '-' + digits.slice(7, 9);
+                }
+                if (digits.length >= 9) {
+                    formatted += '-' + digits.slice(9, 11);
+                }
+            }
+            
+            if (formatted !== this.value) {
+                let oldLength = this.value.length;
+                this.value = formatted;
+                let newLength = this.value.length;
+                let diff = newLength - oldLength;
+                let newPos = cursorPos + diff;
+                if (newPos < 0) newPos = 0;
+                if (newPos > newLength) newPos = newLength;
+                this.setSelectionRange(newPos, newPos);
+            }
+            lastValue = this.value;
+        });
+        
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace') {
+                let cursorPos = this.selectionStart;
+                let value = this.value;
+                
+                if (cursorPos > 0) {
+                    let charBefore = value[cursorPos - 1];
+                    // если перед курсором служебный символ, удаляем его тоже
+                    if (charBefore === '(' || charBefore === ')' || charBefore === '-' || charBefore === '+') {
+                        e.preventDefault();
+                        let newValue = value.slice(0, cursorPos - 1) + value.slice(cursorPos);
+                        this.value = newValue;
+                        this.setSelectionRange(cursorPos - 1, cursorPos - 1);
+                        this.dispatchEvent(new Event('input', { bubbles: true }));
+                        return;
+                    }
+                }
+            }
+            
+            let allowed = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Enter'];
+            if (allowed.includes(e.key)) return;
+            if (!/^\d$/.test(e.key)) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    // ========== ДАТА: умный автоформат ==========
+    function setupDateInput(input) {
+        input.maxLength = 10;
+        
+        input.addEventListener('input', function(e) {
+            let cursorPos = this.selectionStart;
+            
+            let digits = this.value.replace(/\D/g, '');
+            if (digits.length > 8) digits = digits.slice(0, 8);
+            
+            let day = '', month = '', year = '';
+            let formatted = '';
+            
+            if (digits.length > 0) {
+                let dayRaw = digits.slice(0, 2);
+                let dayNum = parseInt(dayRaw);
+                if (dayRaw.length === 2 && dayNum > 31) dayRaw = '31';
+                if (dayRaw.length === 2 && dayNum < 1 && dayRaw !== '00') dayRaw = '01';
+                day = dayRaw;
+                formatted = day;
+                
+                if (digits.length >= 2) {
+                    formatted = day + '.';
+                }
+                
+                if (digits.length >= 3) {
+                    let monthRaw = digits.slice(2, 4);
+                    let monthNum = parseInt(monthRaw);
+                    if (monthRaw.length === 2 && monthNum > 12) monthRaw = '12';
+                    if (monthRaw.length === 2 && monthNum < 1 && monthRaw !== '00') monthRaw = '01';
+                    month = monthRaw;
+                    formatted = day + '.' + month;
+                }
+                
+                if (digits.length >= 4) {
+                    formatted = day + '.' + month + '.';
+                }
+                
+                if (digits.length >= 5) {
+                    let yearRaw = digits.slice(4, 8);
+                    if (yearRaw.length === 4 && parseInt(yearRaw) < 2024) yearRaw = '2024';
+                    year = yearRaw;
+                    formatted = day + '.' + month + '.' + year;
+                }
+            }
+            
+            if (formatted !== this.value) {
+                let oldLength = this.value.length;
+                this.value = formatted;
+                let newLength = this.value.length;
+                let diff = newLength - oldLength;
+                let newPos = cursorPos + diff;
+                if (newPos < 0) newPos = 0;
+                if (newPos > newLength) newPos = newLength;
+                this.setSelectionRange(newPos, newPos);
+            }
+        });
+        
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace') {
+                let cursorPos = this.selectionStart;
+                let value = this.value;
+                
+                if (cursorPos > 0) {
+                    let charBefore = value[cursorPos - 1];
+                    // если перед курсором точка, удаляем её тоже
+                    if (charBefore === '.') {
+                        e.preventDefault();
+                        let newValue = value.slice(0, cursorPos - 1) + value.slice(cursorPos);
+                        this.value = newValue;
+                        this.setSelectionRange(cursorPos - 1, cursorPos - 1);
+                        this.dispatchEvent(new Event('input', { bubbles: true }));
+                        return;
+                    }
+                }
+            }
+            
+            let allowed = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Enter'];
+            if (allowed.includes(e.key)) return;
+            if (!/^\d$/.test(e.key)) {
+                e.preventDefault();
+            }
+        });
+    }
+    
+    // кнопка очистки поля
+    function addClearButton(input, container) {
+        let clearBtn = document.createElement('button');
+        clearBtn.innerHTML = '✕';
+        clearBtn.className = 'clear-btn';
+        clearBtn.title = 'Очистить';
+        clearBtn.type = 'button';
+        clearBtn.onclick = () => {
+            input.value = '';
+            input.focus();
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        };
+        container.appendChild(clearBtn);
+    }
+
+    // валидация
+    function validateName(value) {
+        if (!value) return false;
+        return /^[А-Яа-яёЁ\s\.\-]+$/.test(value.trim());
+    }
+    
+    function validatePhone(value) {
+        let pattern = /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
+        return pattern.test(value);
+    }
+    
+    function validateEmail(value) {
+        if (!value) return false;
+        return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(value);
+    }
+    
+    function parseDateFromString(str) {
+        let parts = str.split('.');
+        if (parts.length !== 3) return null;
+        let day = parseInt(parts[0], 10);
+        let month = parseInt(parts[1], 10) - 1;
+        let year = parseInt(parts[2], 10);
+        if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
+        if (day < 1 || day > 31) return null;
+        if (month < 0 || month > 11) return null;
+        return new Date(year, month, day);
+    }
+    
+    function validateDates(startStr, endStr) {
+        if (!startStr || !endStr) return false;
+        let start = parseDateFromString(startStr);
+        let end = parseDateFromString(endStr);
+        if (!start || !end) return false;
+        return start < end;
+    }
+
+    function showMessage(text) {
+        let oldMsg = document.querySelector('.toast-msg');
+        if (oldMsg) oldMsg.remove();
+        let div = document.createElement('div');
+        div.className = 'toast-msg';
+        div.innerText = text;
+        div.style.position = 'fixed';
+        div.style.bottom = '20px';
+        div.style.left = '50%';
+        div.style.transform = 'translateX(-50%)';
+        div.style.backgroundColor = 'black';
+        div.style.color = 'white';
+        div.style.padding = '8px 16px';
+        div.style.border = '1px solid white';
+        div.style.fontSize = '14px';
+        div.style.zIndex = '999';
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 3000);
+    }
+
+    function renderCatalog() {
+        let displayRooms = getDisplayRooms();
+
+        let filterHtml = `
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label><input type="checkbox" value="STANDARD" class="filter-chk" ${selectedFilters.includes('STANDARD') ? 'checked' : ''}> Стандартный</label>
+                    <label><input type="checkbox" value="STUDIO" class="filter-chk" ${selectedFilters.includes('STUDIO') ? 'checked' : ''}> Студия</label>
+                    <label><input type="checkbox" value="LUX" class="filter-chk" ${selectedFilters.includes('LUX') ? 'checked' : ''}> Люкс</label>
+                </div>
+                <div>
+                    <button id="applyFilterBtn" class="btn">Применить</button>
+                    <button id="resetFilterBtn" class="btn">Сбросить фильтр</button>
                 </div>
             </div>
         `;
-        
-        questionsContainer.innerHTML = fullHtml;
-        
-        // навесить обработчики на варианты ответов
-        const optionDivs = document.querySelectorAll('.option');
-        optionDivs.forEach(optDiv => {
-            optDiv.addEventListener('click', (e) => {
-                if (quizCompleted) return;
-                const idx = parseInt(optDiv.getAttribute('data-opt-index'), 10);
-                // обновить ответ для текущего вопроса
-                if (userAnswers[currentQuestionIndex] === idx) {
-                    // если клик по уже выбранному — можно снять выделение? (по концепции теста лучше оставить как есть, но для гибкости сделаем переключение)
-                    // Но часто тесты позволяют сменить ответ. Однако мы сделаем просто изменение без снятия, но можно и снять если повторно? 
-                    // По ТЗ лучше: повторный клик не снимает, а оставляет выбранным, но пользователь может выбрать другой вариант. 
-                    // Ничего страшного, пусть остаётся выбранным. Чтобы снять — выберет другой.
+
+        let cardsHtml = '';
+        for (let room of displayRooms) {
+            cardsHtml += `
+                <div class="room-card">
+                    <div class="room-img">${room.imageIcon}</div>
+                    <div class="room-info">
+                        <div class="room-category">${room.categoryName}</div>
+                        <div class="room-price">${room.price} ₽/сутки</div>
+                        <div class="room-features">${room.characteristics}</div>
+                        <button class="book-btn" data-id="${room.id}">Забронировать</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        if (displayRooms.length === 0) {
+            cardsHtml = '<p style="margin:20px 0">Нет номеров подходящих под фильтр</p>';
+        }
+
+        let html = `
+            <div class="header">
+                <h1>ОтельБук</h1>
+                <div class="slogan">Найди идеальный номер для своего отдыха</div>
+            </div>
+            ${filterHtml}
+            <div class="catalog-grid" id="catalogGrid">
+                ${cardsHtml}
+            </div>
+            <div class="footer">
+                <div>Контакты:</div>
+                <div class="contacts">
+                    Адрес: г. Москва, ул. Примерная, д.1<br>
+                    Режим работы: 10:00–22:00<br>
+                    Телефон: +7 (123) 456-78-90<br>
+                    E-mail: info@hotelbook.ru
+                </div>
+            </div>
+        `;
+
+        document.getElementById('app').innerHTML = html;
+
+        document.getElementById('applyFilterBtn').addEventListener('click', () => {
+            let checks = document.querySelectorAll('.filter-chk');
+            let newFilters = [];
+            checks.forEach(ch => { if (ch.checked) newFilters.push(ch.value); });
+            selectedFilters = newFilters;
+            renderCatalog();
+        });
+
+        document.getElementById('resetFilterBtn').addEventListener('click', () => {
+            let checks = document.querySelectorAll('.filter-chk');
+            checks.forEach(ch => ch.checked = false);
+            selectedFilters = [];
+            renderCatalog();
+        });
+
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                let id = parseInt(btn.getAttribute('data-id'));
+                let room = allRooms.find(r => r.id === id);
+                if (room) {
+                    selectedRoom = room;
+                    renderBooking();
                 }
-                userAnswers[currentQuestionIndex] = idx;
-                // перерисовать текущий вопрос для отображения выделения
-                renderCurrentQuestion();
-                updateProgress();
-                // разблокируем кнопки навигации (при необходимости)
-                updateNavButtonsState();
             });
         });
     }
 
-    // вспомогательная функция для экранирования HTML
-    function escapeHtml(str) {
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-            return c;
+    function renderBooking() {
+        if (!selectedRoom) {
+            renderCatalog();
+            return;
+        }
+
+        let html = `
+            <div class="header">
+                <h1>ОтельБук</h1>
+                <div class="slogan">Бронирование номера</div>
+            </div>
+            <div class="booking-container">
+                <div class="selected-room-info">
+                    <strong>${selectedRoom.categoryName}</strong> | ${selectedRoom.price} ₽/сутки<br>
+                    ${selectedRoom.characteristics}
+                </div>
+                <form id="bookingForm">
+                    <div class="form-group" id="firstNameGroup">
+                        <label>Имя *</label>
+                        <input type="text" id="firstName" autocomplete="off">
+                        <div class="hint">Только кириллица, пробелы, точки, тире</div>
+                        <span class="error-msg" id="error-firstName"></span>
+                    </div>
+                    <div class="form-group" id="lastNameGroup">
+                        <label>Фамилия *</label>
+                        <input type="text" id="lastName">
+                        <div class="hint">Только кириллица, пробелы, точки, тире</div>
+                        <span class="error-msg" id="error-lastName"></span>
+                    </div>
+                    <div class="form-group" id="phoneGroup">
+                        <label>Телефон *</label>
+                        <input type="text" id="phone" placeholder="+7(123)456-78-90">
+                        <div class="hint">Вводите цифры — формат сам появится, Backspace удаляет и скобки</div>
+                        <span class="error-msg" id="error-phone"></span>
+                    </div>
+                    <div class="form-group" id="emailGroup">
+                        <label>E-mail *</label>
+                        <input type="text" id="email">
+                        <div class="hint">example@mail.ru</div>
+                        <span class="error-msg" id="error-email"></span>
+                    </div>
+                    <div class="form-group" id="checkInGroup">
+                        <label>Дата заезда *</label>
+                        <input type="text" id="checkIn" placeholder="ДД.ММ.ГГГГ">
+                        <div class="hint">Вводите цифры — точки сами, Backspace удаляет и точки</div>
+                        <span class="error-msg" id="error-checkIn"></span>
+                    </div>
+                    <div class="form-group" id="checkOutGroup">
+                        <label>Дата выезда *</label>
+                        <input type="text" id="checkOut" placeholder="ДД.ММ.ГГГГ">
+                        <div class="hint">Вводите цифры — точки сами, Backspace удаляет и точки</div>
+                        <span class="error-msg" id="error-checkOut"></span>
+                    </div>
+                    <button type="submit" class="btn" style="width:100%; margin-top:5px;">Отправить заявку</button>
+                </form>
+                <div class="back-link" id="backToCatalog">← Назад к каталогу</div>
+            </div>
+            <div class="footer">
+                <div>Контакты: г. Москва, ул. Примерная, д.1 | 10:00–22:00 | +7 (123) 456-78-90 | info@hotelbook.ru</div>
+            </div>
+        `;
+        document.getElementById('app').innerHTML = html;
+
+        let phoneInput = document.getElementById('phone');
+        let checkInInput = document.getElementById('checkIn');
+        let checkOutInput = document.getElementById('checkOut');
+        let firstNameInput = document.getElementById('firstName');
+        let lastNameInput = document.getElementById('lastName');
+        let emailInput = document.getElementById('email');
+        
+        setupPhoneInput(phoneInput);
+        setupDateInput(checkInInput);
+        setupDateInput(checkOutInput);
+        
+        addClearButton(phoneInput, document.getElementById('phoneGroup'));
+        addClearButton(checkInInput, document.getElementById('checkInGroup'));
+        addClearButton(checkOutInput, document.getElementById('checkOutGroup'));
+        addClearButton(firstNameInput, document.getElementById('firstNameGroup'));
+        addClearButton(lastNameInput, document.getElementById('lastNameGroup'));
+        addClearButton(emailInput, document.getElementById('emailGroup'));
+
+        let allInputs = [firstNameInput, lastNameInput, phoneInput, emailInput, checkInInput, checkOutInput];
+        allInputs.forEach(inp => {
+            inp.addEventListener('input', () => {
+                let errorId = inp.id === 'checkIn' ? 'error-checkIn' : 
+                             inp.id === 'checkOut' ? 'error-checkOut' :
+                             `error-${inp.id}`;
+                let errSpan = document.getElementById(errorId);
+                if (errSpan) errSpan.innerText = '';
+                if (inp.id === 'checkIn' || inp.id === 'checkOut') {
+                    document.getElementById('error-checkIn').innerText = '';
+                    document.getElementById('error-checkOut').innerText = '';
+                }
+            });
         });
-    }
 
-    function updateNavButtonsState() {
-        if (quizCompleted) {
-            prevBtn.disabled = true;
-            nextBtn.disabled = true;
-            return;
-        }
-        // кнопка "назад"
-        if (currentQuestionIndex === 0) {
-            prevBtn.disabled = true;
-        } else {
-            prevBtn.disabled = false;
-        }
-        // кнопка "далее"
-        if (currentQuestionIndex === questionsData.length - 1) {
-            nextBtn.disabled = true;
-        } else {
-            nextBtn.disabled = false;
-        }
-    }
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            let firstName = firstNameInput.value.trim();
+            let lastName = lastNameInput.value.trim();
+            let phone = phoneInput.value.trim();
+            let email = emailInput.value.trim();
+            let checkIn = checkInInput.value.trim();
+            let checkOut = checkOutInput.value.trim();
 
-    function goPrev() {
-        if (quizCompleted) return;
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            renderCurrentQuestion();
-            updateNavButtonsState();
-        }
-    }
-    
-    function goNext() {
-        if (quizCompleted) return;
-        if (currentQuestionIndex < questionsData.length - 1) {
-            currentQuestionIndex++;
-            renderCurrentQuestion();
-            updateNavButtonsState();
-        }
-    }
-
-    // подсчёт результатов и вывод вердикта
-    function calculateAndShowResults() {
-        if (quizCompleted) return;
-        
-        // проверим, все ли вопросы отвечены (можно разрешить финальный подсчет даже с пропусками, но предупредим)
-        const answeredCount = userAnswers.filter(a => a !== null).length;
-        if (answeredCount < questionsData.length) {
-            // мигающий эффект на кнопке сабмит, как "кря-предупреждение"
-            submitBtn.classList.add('alert-pulse');
-            setTimeout(() => {
-                submitBtn.classList.remove('alert-pulse');
-            }, 800);
-            resultPanel.style.display = 'block';
-            resultPanel.innerHTML = `⚠️ ТЫ ОТВЕТИЛ ТОЛЬКО НА ${answeredCount} ИЗ ${questionsData.length} ВОПРОСОВ! ⚠️<br>Заполни все, иначе техника безопасности подведёт. Ответь на все вопросы!`;
-            resultPanel.style.borderColor = "#ffaa44";
-            return;
-        }
-        
-        // считаем правильные ответы
-        let correctCount = 0;
-        for (let i = 0; i < questionsData.length; i++) {
-            if (userAnswers[i] === questionsData[i].correct) {
-                correctCount++;
+            let errors = {};
+            
+            if (!validateName(firstName)) errors.firstName = 'Используйте кириллицу, пробелы, точки или тире';
+            if (!validateName(lastName)) errors.lastName = 'Используйте кириллицу, пробелы, точки или тире';
+            if (!validatePhone(phone)) errors.phone = 'Введите 10 цифр после +7: +7(123)456-78-90';
+            if (!validateEmail(email)) errors.email = 'Пример: name@domain.ru';
+            
+            if (checkIn.length !== 10) {
+                errors.checkIn = 'Введите дату полностью: ДД.ММ.ГГГГ (8 цифр)';
+            } else if (!parseDateFromString(checkIn)) {
+                errors.checkIn = 'Некорректная дата (день 1-31, месяц 1-12)';
             }
-        }
-        
-        const percent = Math.round((correctCount / questionsData.length) * 100);
-        let verdict = '';
-        let icon = '';
-        if (correctCount === 8) {
-            verdict = '⭐ АБСОЛЮТНЫЙ КРЯ-ГУРУ! Твоя безопасность — эталон! Глаза и спина скажут спасибо. ⭐';
-            icon = '🏆';
-        } else if (correctCount >= 6) {
-            verdict = '👍 Неплохо, но есть нюансы. Пересмотри эргономику и правила с проводами. Ты на верном пути!';
-            icon = '⚡';
-        } else if (correctCount >= 4) {
-            verdict = '⚠️ Тревожный звонок! Риск травм и поломок высок. Пройди инструктаж заново. Береги технику и здоровье!';
-            icon = '🔥';
-        } else {
-            verdict = '💀 КРЯ-ПРОВАЛ! Ты игнорируешь ТБ. Немедленно изучи правила: розетки, осанка, перерывы и пожарка! 💀';
-            icon = '☠️';
-        }
-        
-        const resultMessage = `${icon} Твой результат: ${correctCount} / ${questionsData.length} (${percent}%)<br><br>${verdict}<br><br>
-        <button id="restartQuizBtn" class="restart-btn">🔄 ПРОЙТИ КРЯ-ТЕСТ ЗАНОВО 🔄</button>`;
-        
-        resultPanel.style.display = 'block';
-        resultPanel.innerHTML = resultMessage;
-        resultPanel.style.borderColor = "#ff7e5e";
-        quizCompleted = true;
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = '0.6';
-        submitBtn.style.cursor = 'default';
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
-        
-        // вешаем событие на кнопку рестарта
-        const restartBtn = document.getElementById('restartQuizBtn');
-        if (restartBtn) {
-            restartBtn.addEventListener('click', () => {
-                resetQuiz();
-            });
-        }
+            
+            if (checkOut.length !== 10) {
+                errors.checkOut = 'Введите дату полностью: ДД.ММ.ГГГГ (8 цифр)';
+            } else if (!parseDateFromString(checkOut)) {
+                errors.checkOut = 'Некорректная дата (день 1-31, месяц 1-12)';
+            }
+            
+            if (checkIn.length === 10 && checkOut.length === 10 && !errors.checkIn && !errors.checkOut) {
+                if (!validateDates(checkIn, checkOut)) {
+                    errors.dates = 'Дата выезда должна быть позже даты заезда';
+                }
+            }
+
+            document.getElementById('error-firstName').innerText = errors.firstName || '';
+            document.getElementById('error-lastName').innerText = errors.lastName || '';
+            document.getElementById('error-phone').innerText = errors.phone || '';
+            document.getElementById('error-email').innerText = errors.email || '';
+            document.getElementById('error-checkIn').innerText = errors.checkIn || errors.dates || '';
+            document.getElementById('error-checkOut').innerText = errors.checkOut || errors.dates || '';
+
+            if (Object.keys(errors).length > 0) return;
+
+            showMessage(`✅ Заявка на номер "${selectedRoom.categoryName}" успешно отправлена!`);
+            setTimeout(() => {
+                renderCatalog();
+            }, 2000);
+        });
+
+        document.getElementById('backToCatalog').addEventListener('click', () => {
+            renderCatalog();
+        });
     }
-    
-    // сброс всего теста
-    function resetQuiz() {
-        userAnswers = new Array(questionsData.length).fill(null);
-        currentQuestionIndex = 0;
-        quizCompleted = false;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        submitBtn.style.cursor = 'pointer';
-        resultPanel.style.display = 'none';
-        resultPanel.innerHTML = '';
-        updateProgress();
-        renderCurrentQuestion();
-        updateNavButtonsState();
-        // убрать возможные блокировки
-    }
-    
-    // инициализация и обработчики
-    function init() {
-        renderCurrentQuestion();
-        updateProgress();
-        updateNavButtonsState();
-        
-        prevBtn.addEventListener('click', goPrev);
-        nextBtn.addEventListener('click', goNext);
-        submitBtn.addEventListener('click', calculateAndShowResults);
-    }
-    
-    init();
+
+    renderCatalog();
 </script>
 </body>
 </html>
