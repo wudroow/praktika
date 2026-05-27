@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сладкие сны - бронирование</title>
+    <title>Сладкие сны - бронирование номеров</title>
     <style>
         * {
             margin: 0;
@@ -29,13 +29,14 @@
             margin-bottom: 25px;
         }
         .header h1 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
         }
         .slogan {
             font-size: 14px;
-            color: #333;
+            color: #555;
             margin-top: 5px;
+            font-style: italic;
         }
 
         .footer {
@@ -54,7 +55,7 @@
             border: 1px solid black;
             padding: 15px;
             margin-bottom: 25px;
-            background: #f9f9f9;
+            background: white;
         }
         .filter-group {
             display: flex;
@@ -98,7 +99,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+            font-size: 52px;
             border-bottom: 1px solid #aaa;
         }
         .room-info {
@@ -212,9 +213,9 @@
 <script>
     // ----- данные -----
     const roomTypes = {
-        STANDARD: { name: "Стандартный", price: 5000, features: "18 м², двуспальная кровать, TV", icon: "" },
-        STUDIO: { name: "Студия", price: 8000, features: "25 м², кухня, холодильник, диван", icon: "" },
-        LUX: { name: "Люкс", price: 12000, features: "40 м², джакузи, балкон, гостиная", icon: "" }
+        STANDARD: { name: "Стандартный", price: 5000, features: "18 м², двуспальная кровать, TV", icon: "🛏️" },
+        STUDIO: { name: "Студия", price: 8000, features: "25 м², кухня, холодильник, диван", icon: "🍳" },
+        LUX: { name: "Люкс", price: 12000, features: "40 м², джакузи, балкон, гостиная", icon: "✨" }
     };
 
     // генерация 12 номеров
@@ -237,6 +238,10 @@
     let selectedFilters = [];
     let selectedRoom = null;
 
+    // сегодняшняя дата в формате YYYY-MM-DD для input date
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+
     function getRandomItems(arr, count) {
         let copy = [...arr];
         for (let i = copy.length - 1; i > 0; i--) {
@@ -256,50 +261,33 @@
         return getRandomItems(filtered, 6);
     }
 
-    // ========== ТЕЛЕФОН: умный автоформат ==========
+    // ========== ТЕЛЕФОН: автоформат + удаление скобок/дефисов ==========
     function setupPhoneInput(input) {
-        let lastValue = '';
+        input.maxLength = 18;
         
         input.addEventListener('input', function(e) {
             let cursorPos = this.selectionStart;
-            
-            // извлекаем только цифры
             let digits = this.value.replace(/\D/g, '');
-            
-            // максимум 11 цифр (7 + 10)
             if (digits.length > 11) digits = digits.slice(0, 11);
             
-            // форматируем
             let formatted = '';
             if (digits.length === 0) {
                 formatted = '';
             } else {
                 formatted = '+' + digits[0];
-                if (digits.length >= 2) {
-                    formatted += '(' + digits.slice(1, 4);
-                }
-                if (digits.length >= 4) {
-                    formatted += ')' + digits.slice(4, 7);
-                }
-                if (digits.length >= 7) {
-                    formatted += '-' + digits.slice(7, 9);
-                }
-                if (digits.length >= 9) {
-                    formatted += '-' + digits.slice(9, 11);
-                }
+                if (digits.length >= 2) formatted += '(' + digits.slice(1, 4);
+                if (digits.length >= 4) formatted += ')' + digits.slice(4, 7);
+                if (digits.length >= 7) formatted += '-' + digits.slice(7, 9);
+                if (digits.length >= 9) formatted += '-' + digits.slice(9, 11);
             }
             
             if (formatted !== this.value) {
                 let oldLength = this.value.length;
                 this.value = formatted;
                 let newLength = this.value.length;
-                let diff = newLength - oldLength;
-                let newPos = cursorPos + diff;
-                if (newPos < 0) newPos = 0;
-                if (newPos > newLength) newPos = newLength;
-                this.setSelectionRange(newPos, newPos);
+                let newPos = cursorPos + (newLength - oldLength);
+                this.setSelectionRange(Math.max(0, Math.min(newPos, newLength)), Math.max(0, Math.min(newPos, newLength)));
             }
-            lastValue = this.value;
         });
         
         input.addEventListener('keydown', function(e) {
@@ -309,99 +297,12 @@
                 
                 if (cursorPos > 0) {
                     let charBefore = value[cursorPos - 1];
-                    // если перед курсором служебный символ, удаляем его тоже
                     if (charBefore === '(' || charBefore === ')' || charBefore === '-' || charBefore === '+') {
                         e.preventDefault();
                         let newValue = value.slice(0, cursorPos - 1) + value.slice(cursorPos);
                         this.value = newValue;
                         this.setSelectionRange(cursorPos - 1, cursorPos - 1);
                         this.dispatchEvent(new Event('input', { bubbles: true }));
-                        return;
-                    }
-                }
-            }
-            
-            let allowed = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Enter'];
-            if (allowed.includes(e.key)) return;
-            if (!/^\d$/.test(e.key)) {
-                e.preventDefault();
-            }
-        });
-    }
-
-    // ========== ДАТА: умный автоформат ==========
-    function setupDateInput(input) {
-        input.maxLength = 10;
-        
-        input.addEventListener('input', function(e) {
-            let cursorPos = this.selectionStart;
-            
-            let digits = this.value.replace(/\D/g, '');
-            if (digits.length > 8) digits = digits.slice(0, 8);
-            
-            let day = '', month = '', year = '';
-            let formatted = '';
-            
-            if (digits.length > 0) {
-                let dayRaw = digits.slice(0, 2);
-                let dayNum = parseInt(dayRaw);
-                if (dayRaw.length === 2 && dayNum > 31) dayRaw = '31';
-                if (dayRaw.length === 2 && dayNum < 1 && dayRaw !== '00') dayRaw = '01';
-                day = dayRaw;
-                formatted = day;
-                
-                if (digits.length >= 2) {
-                    formatted = day + '.';
-                }
-                
-                if (digits.length >= 3) {
-                    let monthRaw = digits.slice(2, 4);
-                    let monthNum = parseInt(monthRaw);
-                    if (monthRaw.length === 2 && monthNum > 12) monthRaw = '12';
-                    if (monthRaw.length === 2 && monthNum < 1 && monthRaw !== '00') monthRaw = '01';
-                    month = monthRaw;
-                    formatted = day + '.' + month;
-                }
-                
-                if (digits.length >= 4) {
-                    formatted = day + '.' + month + '.';
-                }
-                
-                if (digits.length >= 5) {
-                    let yearRaw = digits.slice(4, 8);
-                    if (yearRaw.length === 4 && parseInt(yearRaw) < 2024) yearRaw = '2024';
-                    year = yearRaw;
-                    formatted = day + '.' + month + '.' + year;
-                }
-            }
-            
-            if (formatted !== this.value) {
-                let oldLength = this.value.length;
-                this.value = formatted;
-                let newLength = this.value.length;
-                let diff = newLength - oldLength;
-                let newPos = cursorPos + diff;
-                if (newPos < 0) newPos = 0;
-                if (newPos > newLength) newPos = newLength;
-                this.setSelectionRange(newPos, newPos);
-            }
-        });
-        
-        input.addEventListener('keydown', function(e) {
-            if (e.key === 'Backspace') {
-                let cursorPos = this.selectionStart;
-                let value = this.value;
-                
-                if (cursorPos > 0) {
-                    let charBefore = value[cursorPos - 1];
-                    // если перед курсором точка, удаляем её тоже
-                    if (charBefore === '.') {
-                        e.preventDefault();
-                        let newValue = value.slice(0, cursorPos - 1) + value.slice(cursorPos);
-                        this.value = newValue;
-                        this.setSelectionRange(cursorPos - 1, cursorPos - 1);
-                        this.dispatchEvent(new Event('input', { bubbles: true }));
-                        return;
                     }
                 }
             }
@@ -445,24 +346,9 @@
         return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(value);
     }
     
-    function parseDateFromString(str) {
-        let parts = str.split('.');
-        if (parts.length !== 3) return null;
-        let day = parseInt(parts[0], 10);
-        let month = parseInt(parts[1], 10) - 1;
-        let year = parseInt(parts[2], 10);
-        if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
-        if (day < 1 || day > 31) return null;
-        if (month < 0 || month > 11) return null;
-        return new Date(year, month, day);
-    }
-    
-    function validateDates(startStr, endStr) {
-        if (!startStr || !endStr) return false;
-        let start = parseDateFromString(startStr);
-        let end = parseDateFromString(endStr);
-        if (!start || !end) return false;
-        return start < end;
+    function validateDates(startDate, endDate) {
+        if (!startDate || !endDate) return false;
+        return new Date(startDate) < new Date(endDate);
     }
 
     function showMessage(text) {
@@ -523,8 +409,8 @@
 
         let html = `
             <div class="header">
-                <h1>ОтельБук</h1>
-                <div class="slogan">Найди идеальный номер для своего отдыха</div>
+                <h1>Сладкие сны</h1>
+                <div class="slogan">"Найди идеальный номер для своего отдыха"</div>
             </div>
             ${filterHtml}
             <div class="catalog-grid" id="catalogGrid">
@@ -533,10 +419,10 @@
             <div class="footer">
                 <div>Контакты:</div>
                 <div class="contacts">
-                    Адрес: г. Москва, ул. Примерная, д.1<br>
-                    Режим работы: 10:00–22:00<br>
-                    Телефон: +7 (123) 456-78-90<br>
-                    E-mail: info@hotelbook.ru
+                    Адрес: г. Москва, ул. Сладкая, д.7<br>
+                    Режим работы: круглосуточно<br>
+                    Телефон: +7 (495) 123-45-67<br>
+                    E-mail: info@sweetdreams.ru
                 </div>
             </div>
         `;
@@ -602,7 +488,7 @@
                     <div class="form-group" id="phoneGroup">
                         <label>Телефон *</label>
                         <input type="text" id="phone" placeholder="+7(123)456-78-90">
-                        <div class="hint">Вводите цифры — формат сам появится, Backspace удаляет и скобки</div>
+                        <div class="hint">Вводите только цифры — формат сам появится, Backspace удаляет и скобки</div>
                         <span class="error-msg" id="error-phone"></span>
                     </div>
                     <div class="form-group" id="emailGroup">
@@ -613,14 +499,14 @@
                     </div>
                     <div class="form-group" id="checkInGroup">
                         <label>Дата заезда *</label>
-                        <input type="text" id="checkIn" placeholder="ДД.ММ.ГГГГ">
-                        <div class="hint">Вводите цифры — точки сами, Backspace удаляет и точки</div>
+                        <input type="date" id="checkIn" min="${todayStr}" value="${todayStr}">
+                        <div class="hint">Выберите дату в календаре</div>
                         <span class="error-msg" id="error-checkIn"></span>
                     </div>
                     <div class="form-group" id="checkOutGroup">
                         <label>Дата выезда *</label>
-                        <input type="text" id="checkOut" placeholder="ДД.ММ.ГГГГ">
-                        <div class="hint">Вводите цифры — точки сами, Backspace удаляет и точки</div>
+                        <input type="date" id="checkOut" min="${todayStr}">
+                        <div class="hint">Выберите дату в календаре</div>
                         <span class="error-msg" id="error-checkOut"></span>
                     </div>
                     <button type="submit" class="btn" style="width:100%; margin-top:5px;">Отправить заявку</button>
@@ -628,42 +514,42 @@
                 <div class="back-link" id="backToCatalog">← Назад к каталогу</div>
             </div>
             <div class="footer">
-                <div>Контакты: г. Москва, ул. Примерная, д.1 | 10:00–22:00 | +7 (123) 456-78-90 | info@hotelbook.ru</div>
+                <div>Контакты: г. Москва, ул. Сладкая, д.7 | круглосуточно | +7 (495) 123-45-67 | info@sweetdreams.ru</div>
             </div>
         `;
         document.getElementById('app').innerHTML = html;
 
         let phoneInput = document.getElementById('phone');
-        let checkInInput = document.getElementById('checkIn');
-        let checkOutInput = document.getElementById('checkOut');
         let firstNameInput = document.getElementById('firstName');
         let lastNameInput = document.getElementById('lastName');
         let emailInput = document.getElementById('email');
+        let checkInInput = document.getElementById('checkIn');
+        let checkOutInput = document.getElementById('checkOut');
         
         setupPhoneInput(phoneInput);
-        setupDateInput(checkInInput);
-        setupDateInput(checkOutInput);
         
         addClearButton(phoneInput, document.getElementById('phoneGroup'));
-        addClearButton(checkInInput, document.getElementById('checkInGroup'));
-        addClearButton(checkOutInput, document.getElementById('checkOutGroup'));
         addClearButton(firstNameInput, document.getElementById('firstNameGroup'));
         addClearButton(lastNameInput, document.getElementById('lastNameGroup'));
         addClearButton(emailInput, document.getElementById('emailGroup'));
+        addClearButton(checkInInput, document.getElementById('checkInGroup'));
+        addClearButton(checkOutInput, document.getElementById('checkOutGroup'));
 
-        let allInputs = [firstNameInput, lastNameInput, phoneInput, emailInput, checkInInput, checkOutInput];
+        let allInputs = [firstNameInput, lastNameInput, phoneInput, emailInput];
         allInputs.forEach(inp => {
             inp.addEventListener('input', () => {
-                let errorId = inp.id === 'checkIn' ? 'error-checkIn' : 
-                             inp.id === 'checkOut' ? 'error-checkOut' :
-                             `error-${inp.id}`;
-                let errSpan = document.getElementById(errorId);
+                let errSpan = document.getElementById(`error-${inp.id}`);
                 if (errSpan) errSpan.innerText = '';
-                if (inp.id === 'checkIn' || inp.id === 'checkOut') {
-                    document.getElementById('error-checkIn').innerText = '';
-                    document.getElementById('error-checkOut').innerText = '';
-                }
             });
+        });
+        
+        checkInInput.addEventListener('change', () => {
+            document.getElementById('error-checkIn').innerText = '';
+            document.getElementById('error-checkOut').innerText = '';
+        });
+        checkOutInput.addEventListener('change', () => {
+            document.getElementById('error-checkIn').innerText = '';
+            document.getElementById('error-checkOut').innerText = '';
         });
 
         document.getElementById('bookingForm').addEventListener('submit', (e) => {
@@ -672,32 +558,24 @@
             let lastName = lastNameInput.value.trim();
             let phone = phoneInput.value.trim();
             let email = emailInput.value.trim();
-            let checkIn = checkInInput.value.trim();
-            let checkOut = checkOutInput.value.trim();
+            let checkIn = checkInInput.value;
+            let checkOut = checkOutInput.value;
 
             let errors = {};
             
             if (!validateName(firstName)) errors.firstName = 'Используйте кириллицу, пробелы, точки или тире';
             if (!validateName(lastName)) errors.lastName = 'Используйте кириллицу, пробелы, точки или тире';
-            if (!validatePhone(phone)) errors.phone = 'Введите 10 цифр после +7: +7(123)456-78-90';
+            if (!validatePhone(phone)) errors.phone = 'Введите 10 цифр — телефон отформатируется в +7(123)456-78-90';
             if (!validateEmail(email)) errors.email = 'Пример: name@domain.ru';
             
-            if (checkIn.length !== 10) {
-                errors.checkIn = 'Введите дату полностью: ДД.ММ.ГГГГ (8 цифр)';
-            } else if (!parseDateFromString(checkIn)) {
-                errors.checkIn = 'Некорректная дата (день 1-31, месяц 1-12)';
+            if (!checkIn) {
+                errors.checkIn = 'Выберите дату заезда';
             }
-            
-            if (checkOut.length !== 10) {
-                errors.checkOut = 'Введите дату полностью: ДД.ММ.ГГГГ (8 цифр)';
-            } else if (!parseDateFromString(checkOut)) {
-                errors.checkOut = 'Некорректная дата (день 1-31, месяц 1-12)';
+            if (!checkOut) {
+                errors.checkOut = 'Выберите дату выезда';
             }
-            
-            if (checkIn.length === 10 && checkOut.length === 10 && !errors.checkIn && !errors.checkOut) {
-                if (!validateDates(checkIn, checkOut)) {
-                    errors.dates = 'Дата выезда должна быть позже даты заезда';
-                }
+            if (checkIn && checkOut && !validateDates(checkIn, checkOut)) {
+                errors.dates = 'Дата выезда должна быть позже даты заезда';
             }
 
             document.getElementById('error-firstName').innerText = errors.firstName || '';
@@ -709,13 +587,15 @@
 
             if (Object.keys(errors).length > 0) return;
 
-            showMessage(`Заявка на номер "${selectedRoom.categoryName}" успешно отправлена!`);
+            showMessage(`✅ Заявка на номер "${selectedRoom.categoryName}" успешно отправлена!`);
             setTimeout(() => {
                 renderCatalog();
             }, 2000);
         });
 
-        document.getElementById('backToCatalog').addEventListener('click', () => {
+        // Кнопка "Назад к каталогу" — теперь работает
+        document.getElementById('backToCatalog').addEventListener('click', (e) => {
+            e.preventDefault();
             renderCatalog();
         });
     }
