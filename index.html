@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сладкие сны - бронирование номеров</title>
+    <title>Сладкие сны | Бутик-отель</title>
     <style>
         * {
             margin: 0;
@@ -12,198 +12,315 @@
         }
 
         body {
-            background: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: black;
+            background: #FFFFFF;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #1A1A1A;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 15px;
+            padding: 2rem;
         }
 
         .header {
-            border-bottom: 2px solid black;
-            padding: 15px 0;
-            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            padding-bottom: 1.5rem;
+            margin-bottom: 0;
+            border-bottom: 1px solid #EAEAEA;
         }
-        .header h1 {
-            font-size: 32px;
-            font-weight: bold;
+        .header-left h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1A1A1A;
+            font-family: 'Playfair Display', 'Times New Roman', serif;
         }
         .slogan {
-            font-size: 14px;
-            color: #555;
-            margin-top: 5px;
-            font-style: italic;
+            font-size: 0.9rem;
+            color: #8B1E3F;
+            margin-top: 0.25rem;
+            letter-spacing: 0.2px;
+        }
+        .header-right {
+            font-size: 0.8rem;
+            color: #8B1E3F;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .footer {
-            border-top: 1px solid #aaa;
-            padding: 15px 0;
-            margin-top: 40px;
-            font-size: 13px;
-            color: #333;
+            border-top: 1px solid #EAEAEA;
+            padding: 2rem 2rem 0.5rem;
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            font-size: 0.8rem;
+            color: #666;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .contacts {
-            margin-top: 8px;
-            line-height: 1.5;
+            line-height: 1.6;
+            text-align: right;
+        }
+        .contacts strong {
+            color: #8B1E3F;
         }
 
         .filter-bar {
-            border: 1px solid black;
-            padding: 15px;
-            margin-bottom: 25px;
-            background: white;
+            background: #FAFAFA;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border: 1px solid #EEEEEE;
         }
         .filter-group {
             display: flex;
-            gap: 15px;
+            gap: 2rem;
             flex-wrap: wrap;
-            margin-bottom: 12px;
         }
         .filter-group label {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 14px;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 450;
+            color: #2C2C2C;
+            cursor: pointer;
+        }
+        .filter-group input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+            accent-color: #8B1E3F;
         }
         .btn {
-            background: white;
-            border: 1px solid black;
-            padding: 6px 14px;
+            background: transparent;
+            border: 1px solid #8B1E3F;
+            padding: 0.5rem 1.5rem;
             cursor: pointer;
-            font-size: 14px;
-            margin-right: 10px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: #8B1E3F;
+            transition: all 0.2s;
         }
-        .btn:hover {
-            background: #eee;
+        .btn-primary {
+            background: #8B1E3F;
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #6B1630;
+        }
+        .btn-outline:hover {
+            background: #FDF5F7;
         }
 
         .catalog-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 2rem;
         }
         .room-card {
-            border: 1px solid black;
-            width: calc(33.333% - 14px);
-            min-width: 250px;
             background: white;
+            border: 1px solid #F0F0F0;
+            transition: all 0.25s;
+        }
+        .room-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04);
+            border-color: #E0C9C0;
         }
         .room-img {
-            background: #eaeaea;
-            height: 160px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 52px;
-            border-bottom: 1px solid #aaa;
+            background-color: #F7F2EF;
+            height: 230px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .room-info {
-            padding: 12px;
+            padding: 1.2rem 1.2rem 1.5rem;
         }
         .room-category {
-            font-weight: bold;
-            font-size: 18px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #1A1A1A;
         }
         .room-price {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 8px 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #8B1E3F;
         }
         .room-features {
-            font-size: 13px;
-            margin: 8px 0;
-            color: #222;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            color: #5A5A5A;
+            margin: 0.8rem 0;
         }
         .book-btn {
-            background: white;
-            border: 1px solid black;
-            padding: 8px;
+            background: #8B1E3F;
+            border: none;
+            padding: 0.7rem;
             width: 100%;
             cursor: pointer;
-            font-size: 14px;
-            margin-top: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: white;
+            margin-top: 1rem;
+            transition: background 0.2s;
         }
         .book-btn:hover {
-            background: #ddd;
+            background: #6B1630;
         }
 
+        /* СТРАНИЦА БРОНИРОВАНИЯ */
+        .booking-hero {
+            position: relative;
+            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .booking-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        .booking-form-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
         .booking-container {
-            border: 1px solid black;
-            padding: 20px;
-            max-width: 500px;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         .selected-room-info {
-            border: 1px solid #aaa;
-            padding: 12px;
-            margin-bottom: 20px;
-            background: #f5f5f5;
+            background: rgba(250, 250, 250, 0.9);
+            padding: 1rem;
+            margin-bottom: 1.8rem;
+            border-left: 3px solid #8B1E3F;
+            font-size: 0.9rem;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 1.2rem;
             position: relative;
         }
         .form-group label {
             display: block;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+            color: #8B1E3F;
         }
         .form-group input {
             width: 100%;
-            padding: 8px;
-            padding-right: 30px;
-            border: 1px solid black;
-            font-size: 14px;
+            padding: 0.8rem;
+            border: 1px solid #E0E0E0;
+            font-size: 0.9rem;
             background: white;
+            transition: border 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #8B1E3F;
         }
         .clear-btn {
             position: absolute;
-            right: 8px;
-            top: 28px;
+            right: 12px;
+            top: 34px;
             background: none;
             border: none;
-            font-size: 16px;
+            font-size: 1rem;
             cursor: pointer;
-            color: #888;
-            padding: 0 5px;
-        }
-        .clear-btn:hover {
-            color: black;
+            color: #aaa;
+            z-index: 5;
         }
         .error-msg {
-            color: #cc0000;
-            font-size: 12px;
-            margin-top: 4px;
+            color: #C04242;
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
             display: block;
         }
         .back-link {
             display: inline-block;
-            margin-top: 20px;
-            color: black;
-            text-decoration: underline;
+            margin-top: 1.5rem;
+            color: #8B1E3F;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
             cursor: pointer;
+            border-bottom: 1px solid #E0C9C0;
         }
         .hint {
-            font-size: 11px;
-            color: #555;
-            margin-top: 3px;
+            font-size: 0.65rem;
+            color: #aaa;
+            margin-top: 0.25rem;
+        }
+        .date-wrapper {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            position: relative;
+        }
+        .date-wrapper input {
+            flex: 1;
+            padding-right: 70px;
+        }
+        .calendar-btn {
+            background: white;
+            border: 1px solid #8B1E3F;
+            padding: 0.7rem 1rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: #8B1E3F;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .date-clear-btn {
+            position: absolute;
+            right: 110px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #aaa;
+            z-index: 5;
         }
 
         @media (max-width: 800px) {
-            .room-card {
-                width: calc(50% - 10px);
-            }
-        }
-        @media (max-width: 550px) {
-            .room-card {
-                width: 100%;
-            }
+            .container { padding: 1rem; }
+            .header-left h1 { font-size: 2rem; }
+            .booking-form-wrapper { padding: 2rem 1rem; }
+            .booking-container { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -211,14 +328,39 @@
 <div class="container" id="app"></div>
 
 <script>
-    // ----- данные -----
     const roomTypes = {
-        STANDARD: { name: "Стандартный", price: 5000, features: "18 м², двуспальная кровать, TV", icon: "" },
-        STUDIO: { name: "Студия", price: 8000, features: "25 м², кухня, холодильник, диван", icon: "" },
-        LUX: { name: "Люкс", price: 12000, features: "40 м², джакузи, балкон, гостиная", icon: "" }
+        STANDARD: {
+            name: "Стандартный",
+            price: 5000,
+            features: "18 м² · двуспальная кровать · TV · кондиционер"
+        },
+        STUDIO: {
+            name: "Студия",
+            price: 8000,
+            features: "25 м² · кухня · холодильник · диван · Wi-Fi"
+        },
+        LUX: {
+            name: "Люкс",
+            price: 12000,
+            features: "40 м² · джакузи · балкон · гостиная · мини-бар"
+        }
     };
 
-    // генерация 12 номеров
+    const roomImages = [
+        "data:image/jpeg;base64,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",
+        "data:image/jpeg;base64,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",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtRXA5uGhbV3kyBPvwSHFBifxxXqRQAfHsfQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_uws9kzO_UqIpK6uBwfDxIc4ouWO01B6_3Q&s",
+        "https://placehold.co/1600x900/F7F2EF/8B1E3F?text=Номер+5+·+Студия",
+        "https://placehold.co/1600x900/F7F2EF/8B1E3F?text=Номер+6+·+Студия",
+        "https://placehold.co/1600x900/F7F2EF/8B1E3F?text=Номер+7+·+Студия",
+        "https://placehold.co/1600x900/F7F2EF/8B1E3F?text=Номер+8+·+Студия",
+        "https://placehold.co/1600x900/F7F2EF/C6A43F?text=Номер+9+·+Люкс",
+        "https://placehold.co/1600x900/F7F2EF/C6A43F?text=Номер+10+·+Люкс",
+        "https://placehold.co/1600x900/F7F2EF/C6A43F?text=Номер+11+·+Люкс",
+        "https://placehold.co/1600x900/F7F2EF/C6A43F?text=Номер+12+·+Люкс"
+    ];
+
     let allRooms = [];
     for (let i = 1; i <= 12; i++) {
         let cat;
@@ -231,16 +373,18 @@
             categoryName: roomTypes[cat].name,
             price: roomTypes[cat].price,
             characteristics: roomTypes[cat].features,
-            imageIcon: roomTypes[cat].icon
+            imageUrl: roomImages[i - 1]
         });
     }
 
     let selectedFilters = [];
     let selectedRoom = null;
-
-    // сегодняшняя дата в формате YYYY-MM-DD для input date
-    const today = new Date();
-    const todayStr = today.toISOString().split('T')[0];
+    
+    const todayDate = new Date(Date.UTC(2026, 4, 27));
+    const todayStr = '2026-05-27';
+    const todayDisplay = '27.05.2026';
+    const minYear = 2026;
+    const maxYear = 2035;
 
     function getRandomItems(arr, count) {
         let copy = [...arr];
@@ -258,122 +402,242 @@
 
     function getDisplayRooms() {
         let filtered = filterRoomsByCategory(allRooms, selectedFilters);
-        return getRandomItems(filtered, 6);
+        if (selectedFilters.length === 0) return getRandomItems(filtered, 6);
+        return filtered;
     }
 
-    // ========== ТЕЛЕФОН: автоформат + удаление скобок/дефисов ==========
     function setupPhoneInput(input) {
         input.maxLength = 18;
-        
-        input.addEventListener('input', function(e) {
-            let cursorPos = this.selectionStart;
+        input.addEventListener('input', function() {
+            let pos = this.selectionStart;
             let digits = this.value.replace(/\D/g, '');
             if (digits.length > 11) digits = digits.slice(0, 11);
-            
             let formatted = '';
-            if (digits.length === 0) {
-                formatted = '';
-            } else {
+            if (digits.length) {
                 formatted = '+' + digits[0];
                 if (digits.length >= 2) formatted += '(' + digits.slice(1, 4);
                 if (digits.length >= 4) formatted += ')' + digits.slice(4, 7);
                 if (digits.length >= 7) formatted += '-' + digits.slice(7, 9);
                 if (digits.length >= 9) formatted += '-' + digits.slice(9, 11);
             }
-            
             if (formatted !== this.value) {
-                let oldLength = this.value.length;
+                let oldLen = this.value.length;
                 this.value = formatted;
-                let newLength = this.value.length;
-                let newPos = cursorPos + (newLength - oldLength);
-                this.setSelectionRange(Math.max(0, Math.min(newPos, newLength)), Math.max(0, Math.min(newPos, newLength)));
+                let newPos = pos + (this.value.length - oldLen);
+                this.setSelectionRange(Math.max(0, Math.min(newPos, this.value.length)), Math.max(0, Math.min(newPos, this.value.length)));
+            }
+        });
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace') {
+                let pos = this.selectionStart;
+                let val = this.value;
+                if (pos > 0 && ['(', ')', '-', '+'].includes(val[pos-1])) {
+                    e.preventDefault();
+                    this.value = val.slice(0, pos-1) + val.slice(pos);
+                    this.setSelectionRange(pos-1, pos-1);
+                    this.dispatchEvent(new Event('input'));
+                }
+            }
+            if (!/^\d$/.test(e.key) && !['Backspace','Delete','Tab','ArrowLeft','ArrowRight','Home','End','Enter'].includes(e.key)) e.preventDefault();
+        });
+    }
+
+    function parseDateFromDMY(dateStr) {
+        let match = dateStr.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+        if (!match) return null;
+        let day = parseInt(match[1], 10);
+        let month = parseInt(match[2], 10) - 1;
+        let year = parseInt(match[3], 10);
+        return new Date(Date.UTC(year, month, day));
+    }
+
+    function setupDateInput(groupId, minDateStr, defaultVal = null) {
+        const group = document.getElementById(groupId);
+        const label = group.querySelector('label');
+        const hint = group.querySelector('.hint');
+        const errorSpan = group.querySelector('.error-msg');
+        
+        [...group.children].forEach(ch => {
+            if (ch !== label && ch !== hint && ch !== errorSpan) group.removeChild(ch);
+        });
+        
+        const wrap = document.createElement('div');
+        wrap.className = 'date-wrapper';
+        
+        const textInput = document.createElement('input');
+        textInput.type = 'text';
+        textInput.placeholder = 'ДД.ММ.ГГГГ';
+        
+        const hiddenDate = document.createElement('input');
+        hiddenDate.type = 'date';
+        hiddenDate.style.position = 'absolute';
+        hiddenDate.style.opacity = '0';
+        hiddenDate.style.pointerEvents = 'none';
+        hiddenDate.style.width = '0';
+        hiddenDate.style.height = '0';
+        hiddenDate.min = minDateStr;
+        
+        const calendarBtn = document.createElement('button');
+        calendarBtn.type = 'button';
+        calendarBtn.textContent = '📅';
+        calendarBtn.className = 'calendar-btn';
+        calendarBtn.style.fontSize = '1.2rem';
+        calendarBtn.style.padding = '0.7rem 1rem';
+        
+        const clearBtn = document.createElement('button');
+        clearBtn.innerHTML = '✕';
+        clearBtn.className = 'date-clear-btn';
+        
+        wrap.appendChild(textInput);
+        wrap.appendChild(calendarBtn);
+        wrap.appendChild(clearBtn);
+        wrap.appendChild(hiddenDate);
+        group.appendChild(wrap);
+        
+        let currentValue = '';
+        
+        function formatDateInput() {
+            let digits = textInput.value.replace(/\D/g, '');
+            if (digits.length > 8) digits = digits.slice(0, 8);
+            
+            let day = '', month = '', year = '';
+            let formatted = '';
+            
+            if (digits.length >= 1) {
+                day = digits.slice(0, 2);
+                let dayNum = parseInt(day);
+                if (day.length === 2 && dayNum > 31) day = '31';
+                if (day.length === 2 && dayNum < 1) day = '01';
+                formatted = day;
+            }
+            if (digits.length >= 2) {
+                formatted = day + '.';
+            }
+            if (digits.length >= 3) {
+                month = digits.slice(2, 4);
+                let monthNum = parseInt(month);
+                if (month.length === 2 && monthNum > 12) month = '12';
+                if (month.length === 2 && monthNum < 1) month = '01';
+                formatted = day + '.' + month;
+            }
+            if (digits.length >= 4) {
+                formatted = day + '.' + month + '.';
+            }
+            if (digits.length >= 5) {
+                year = digits.slice(4, 8);
+                let yearNum = parseInt(year);
+                if (year.length === 4 && yearNum < minYear) year = String(minYear);
+                if (year.length === 4 && yearNum > maxYear) year = String(maxYear);
+                formatted = day + '.' + month + '.' + year;
+            }
+            
+            if (formatted !== textInput.value) {
+                let oldLen = textInput.value.length;
+                let cursorPos = textInput.selectionStart;
+                textInput.value = formatted;
+                let newLen = textInput.value.length;
+                let newPos = cursorPos + (newLen - oldLen);
+                if (newPos < 0) newPos = 0;
+                if (newPos > newLen) newPos = newLen;
+                textInput.setSelectionRange(newPos, newPos);
+            }
+            
+            updateValue();
+        }
+        
+        function updateValue() {
+            let dateObj = parseDateFromDMY(textInput.value);
+            if (dateObj && !isNaN(dateObj.getTime())) {
+                if (dateObj >= todayDate) {
+                    let year = dateObj.getUTCFullYear();
+                    let month = String(dateObj.getUTCMonth() + 1).padStart(2, '0');
+                    let day = String(dateObj.getUTCDate()).padStart(2, '0');
+                    hiddenDate.value = `${year}-${month}-${day}`;
+                    currentValue = hiddenDate.value;
+                    if (errorSpan) errorSpan.innerText = '';
+                } else {
+                    hiddenDate.value = '';
+                    currentValue = '';
+                    if (textInput.value.length === 10 && errorSpan) errorSpan.innerText = `Дата не может быть раньше ${todayDisplay}`;
+                }
+            } else if (textInput.value.length === 10) {
+                currentValue = '';
+                if (errorSpan) errorSpan.innerText = 'Неверный формат, используйте ДД.ММ.ГГГГ';
+            } else {
+                currentValue = '';
+            }
+        }
+        
+        textInput.addEventListener('input', formatDateInput);
+        
+        calendarBtn.addEventListener('click', () => {
+            hiddenDate.showPicker();
+        });
+        
+        hiddenDate.addEventListener('change', () => {
+            if (hiddenDate.value) {
+                let [year, month, day] = hiddenDate.value.split('-');
+                textInput.value = `${day}.${month}.${year}`;
+                currentValue = hiddenDate.value;
+                if (errorSpan) errorSpan.innerText = '';
+            } else {
+                textInput.value = '';
+                currentValue = '';
             }
         });
         
-        input.addEventListener('keydown', function(e) {
-            if (e.key === 'Backspace') {
-                let cursorPos = this.selectionStart;
-                let value = this.value;
-                
-                if (cursorPos > 0) {
-                    let charBefore = value[cursorPos - 1];
-                    if (charBefore === '(' || charBefore === ')' || charBefore === '-' || charBefore === '+') {
-                        e.preventDefault();
-                        let newValue = value.slice(0, cursorPos - 1) + value.slice(cursorPos);
-                        this.value = newValue;
-                        this.setSelectionRange(cursorPos - 1, cursorPos - 1);
-                        this.dispatchEvent(new Event('input', { bubbles: true }));
-                    }
-                }
-            }
-            
-            let allowed = ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Enter'];
-            if (allowed.includes(e.key)) return;
-            if (!/^\d$/.test(e.key)) {
-                e.preventDefault();
-            }
+        clearBtn.addEventListener('click', () => {
+            textInput.value = '';
+            hiddenDate.value = '';
+            currentValue = '';
+            if (errorSpan) errorSpan.innerText = '';
+            textInput.focus();
         });
-    }
-    
-    // кнопка очистки поля
-    function addClearButton(input, container) {
-        let clearBtn = document.createElement('button');
-        clearBtn.innerHTML = '✕';
-        clearBtn.className = 'clear-btn';
-        clearBtn.title = 'Очистить';
-        clearBtn.type = 'button';
-        clearBtn.onclick = () => {
-            input.value = '';
-            input.focus();
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-        };
-        container.appendChild(clearBtn);
+        
+        if (defaultVal) {
+            hiddenDate.value = defaultVal;
+            let [year, month, day] = defaultVal.split('-');
+            textInput.value = `${day}.${month}.${year}`;
+            currentValue = defaultVal;
+        }
+        
+        return { getValue: () => currentValue };
     }
 
-    // валидация
-    function validateName(value) {
-        if (!value) return false;
-        return /^[А-Яа-яёЁ\s\.\-]+$/.test(value.trim());
+    function addClearButton(input, container) {
+        let btn = document.createElement('button');
+        btn.innerHTML = '✕';
+        btn.className = 'clear-btn';
+        btn.onclick = () => { input.value = ''; input.focus(); input.dispatchEvent(new Event('input')); };
+        container.appendChild(btn);
     }
-    
-    function validatePhone(value) {
-        let pattern = /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/;
-        return pattern.test(value);
-    }
-    
-    function validateEmail(value) {
-        if (!value) return false;
-        return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(value);
-    }
-    
-    function validateDates(startDate, endDate) {
-        if (!startDate || !endDate) return false;
-        return new Date(startDate) < new Date(endDate);
-    }
+
+    function validateName(v) { return /^[А-Яа-яёЁ\s\.\-]+$/.test(v?.trim() || ''); }
+    function validatePhone(v) { return /^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$/.test(v); }
+    function validateEmail(v) { return /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(v); }
+    function validateDates(s, e) { return s && e && new Date(s) < new Date(e); }
 
     function showMessage(text) {
-        let oldMsg = document.querySelector('.toast-msg');
-        if (oldMsg) oldMsg.remove();
+        let old = document.querySelector('.toast-msg');
+        if (old) old.remove();
         let div = document.createElement('div');
         div.className = 'toast-msg';
         div.innerText = text;
         div.style.position = 'fixed';
-        div.style.bottom = '20px';
+        div.style.bottom = '24px';
         div.style.left = '50%';
         div.style.transform = 'translateX(-50%)';
-        div.style.backgroundColor = 'black';
+        div.style.backgroundColor = '#8B1E3F';
         div.style.color = 'white';
-        div.style.padding = '8px 16px';
-        div.style.border = '1px solid white';
-        div.style.fontSize = '14px';
-        div.style.zIndex = '999';
+        div.style.padding = '10px 24px';
+        div.style.zIndex = '1000';
+        div.style.fontSize = '0.8rem';
         document.body.appendChild(div);
         setTimeout(() => div.remove(), 3000);
     }
 
     function renderCatalog() {
-        let displayRooms = getDisplayRooms();
-
+        let rooms = getDisplayRooms();
         let filterHtml = `
             <div class="filter-bar">
                 <div class="filter-group">
@@ -382,224 +646,149 @@
                     <label><input type="checkbox" value="LUX" class="filter-chk" ${selectedFilters.includes('LUX') ? 'checked' : ''}> Люкс</label>
                 </div>
                 <div>
-                    <button id="applyFilterBtn" class="btn">Применить</button>
-                    <button id="resetFilterBtn" class="btn">Сбросить фильтр</button>
+                    <button id="applyFilterBtn" class="btn btn-outline">Применить</button>
+                    <button id="resetFilterBtn" class="btn btn-outline">Сбросить</button>
                 </div>
             </div>
         `;
-
-        let cardsHtml = '';
-        for (let room of displayRooms) {
-            cardsHtml += `
+        let cards = '';
+        for (let r of rooms) {
+            cards += `
                 <div class="room-card">
-                    <div class="room-img">${room.imageIcon}</div>
+                    <div class="room-img" style="background-image: url('${r.imageUrl}');"></div>
                     <div class="room-info">
-                        <div class="room-category">${room.categoryName}</div>
-                        <div class="room-price">${room.price} ₽/сутки</div>
-                        <div class="room-features">${room.characteristics}</div>
-                        <button class="book-btn" data-id="${room.id}">Забронировать</button>
+                        <div class="room-category">${r.categoryName}</div>
+                        <div class="room-price">${r.price.toLocaleString()} ₽ / сутки</div>
+                        <div class="room-features">${r.characteristics}</div>
+                        <button class="book-btn" data-id="${r.id}">Забронировать</button>
                     </div>
                 </div>
             `;
         }
-
-        if (displayRooms.length === 0) {
-            cardsHtml = '<p style="margin:20px 0">Нет номеров подходящих под фильтр</p>';
-        }
-
-        let html = `
+        if (!rooms.length) cards = '<p style="margin: 2rem 0;">Нет номеров под выбранные категории</p>';
+        let full = `
             <div class="header">
-                <h1>Сладкие сны</h1>
-                <div class="slogan">"Найди идеальный номер для своего отдыха"</div>
+                <div class="header-left">
+                    <h1>Сладкие сны</h1>
+                    <div class="slogan">Бутик-отель в центре столицы</div>
+                </div>
+                <div class="header-right">тишина · комфорт · стиль</div>
             </div>
             ${filterHtml}
-            <div class="catalog-grid" id="catalogGrid">
-                ${cardsHtml}
-            </div>
+            <div class="catalog-grid">${cards}</div>
             <div class="footer">
-                <div>Контакты:</div>
+                <div>© Сладкие сны</div>
                 <div class="contacts">
-                    Адрес: г. Москва, ул. Сладкая, д.7<br>
-                    Режим работы: круглосуточно<br>
-                    Телефон: +7 (495) 123-45-67<br>
-                    E-mail: info@sweetdreams.ru
+                    <strong>Контакты</strong><br>
+                    📍 Москва, ул. Сладкая, 7<br>
+                    🕛 круглосуточно<br>
+                    📞 +7 (495) 123-45-67<br>
+                    ✉️ info@sweetdreams.ru
                 </div>
             </div>
         `;
-
-        document.getElementById('app').innerHTML = html;
-
-        document.getElementById('applyFilterBtn').addEventListener('click', () => {
-            let checks = document.querySelectorAll('.filter-chk');
-            let newFilters = [];
-            checks.forEach(ch => { if (ch.checked) newFilters.push(ch.value); });
-            selectedFilters = newFilters;
+        document.getElementById('app').innerHTML = full;
+        document.getElementById('applyFilterBtn').onclick = () => {
+            selectedFilters = [...document.querySelectorAll('.filter-chk:checked')].map(cb => cb.value);
             renderCatalog();
-        });
-
-        document.getElementById('resetFilterBtn').addEventListener('click', () => {
-            let checks = document.querySelectorAll('.filter-chk');
-            checks.forEach(ch => ch.checked = false);
+        };
+        document.getElementById('resetFilterBtn').onclick = () => {
+            document.querySelectorAll('.filter-chk').forEach(cb => cb.checked = false);
             selectedFilters = [];
             renderCatalog();
-        });
-
+        };
         document.querySelectorAll('.book-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                let id = parseInt(btn.getAttribute('data-id'));
-                let room = allRooms.find(r => r.id === id);
-                if (room) {
-                    selectedRoom = room;
-                    renderBooking();
-                }
-            });
+            btn.onclick = () => {
+                let id = parseInt(btn.dataset.id);
+                selectedRoom = allRooms.find(r => r.id === id);
+                renderBooking();
+            };
         });
     }
 
     function renderBooking() {
-        if (!selectedRoom) {
-            renderCatalog();
-            return;
-        }
-
+        if (!selectedRoom) return renderCatalog();
+        
         let html = `
-            <div class="header">
-                <h1>Сладкие сны</h1>
-                <div class="slogan">Бронирование номера</div>
-            </div>
-            <div class="booking-container">
-                <div class="selected-room-info">
-                    <strong>${selectedRoom.categoryName}</strong> | ${selectedRoom.price} ₽/сутки<br>
-                    ${selectedRoom.characteristics}
+            <div class="header" style="margin-bottom: 0; border-bottom: none;">
+                <div class="header-left">
+                    <h1>Сладкие сны</h1>
+                    <div class="slogan">Бутик-отель в центре столицы</div>
                 </div>
-                <form id="bookingForm">
-                    <div class="form-group" id="firstNameGroup">
-                        <label>Имя *</label>
-                        <input type="text" id="firstName" autocomplete="off">
-                        <div class="hint">Только кириллица, пробелы, точки, тире</div>
-                        <span class="error-msg" id="error-firstName"></span>
+                <div class="header-right">тишина · комфорт · стиль</div>
+            </div>
+            <div class="booking-hero" style="background-image: url('${selectedRoom.imageUrl}');">
+                <div class="booking-form-wrapper">
+                    <div class="booking-container">
+                        <div class="selected-room-info">
+                            <strong>${selectedRoom.categoryName}</strong> — ${selectedRoom.price.toLocaleString()} ₽/сутки<br>${selectedRoom.characteristics}
+                        </div>
+                        <form id="bookingForm">
+                            <div class="form-group" id="fnG"><label>Имя *</label><input id="firstName"><div class="hint">Кириллица, пробелы, точки, тире</div><span class="error-msg" id="errFn"></span></div>
+                            <div class="form-group" id="lnG"><label>Фамилия *</label><input id="lastName"><div class="hint">Кириллица, пробелы, точки, тире</div><span class="error-msg" id="errLn"></span></div>
+                            <div class="form-group" id="phG"><label>Телефон *</label><input id="phone" placeholder="+7(123)456-78-90"><div class="hint">Только цифры, автоформат</div><span class="error-msg" id="errPh"></span></div>
+                            <div class="form-group" id="emG"><label>Email *</label><input id="email"><div class="hint">name@example.ru</div><span class="error-msg" id="errEm"></span></div>
+                            <div class="form-group" id="checkInGroup"><label>Дата заезда *</label><div class="hint">Введите 8 цифр — точки сами (минимум ${todayDisplay})</div><span class="error-msg" id="errCin"></span></div>
+                            <div class="form-group" id="checkOutGroup"><label>Дата выезда *</label><div class="hint">Введите 8 цифр — точки сами (минимум ${todayDisplay})</div><span class="error-msg" id="errCout"></span></div>
+                            <button type="submit" class="btn btn-primary" style="width:100%;">Отправить заявку</button>
+                        </form>
+                        <div class="back-link" id="backToCatalog">← Назад к каталогу</div>
                     </div>
-                    <div class="form-group" id="lastNameGroup">
-                        <label>Фамилия *</label>
-                        <input type="text" id="lastName">
-                        <div class="hint">Только кириллица, пробелы, точки, тире</div>
-                        <span class="error-msg" id="error-lastName"></span>
-                    </div>
-                    <div class="form-group" id="phoneGroup">
-                        <label>Телефон *</label>
-                        <input type="text" id="phone" placeholder="+7(123)456-78-90">
-                        <div class="hint">Только цифры</div>
-                        <span class="error-msg" id="error-phone"></span>
-                    </div>
-                    <div class="form-group" id="emailGroup">
-                        <label>E-mail *</label>
-                        <input type="text" id="email">
-                        <div class="hint">example@mail.ru</div>
-                        <span class="error-msg" id="error-email"></span>
-                    </div>
-                    <div class="form-group" id="checkInGroup">
-                        <label>Дата заезда *</label>
-                        <input type="date" id="checkIn" min="${todayStr}" value="${todayStr}">
-                        <div class="hint">Выберите дату в календаре или введите самостоятельно</div>
-                        <span class="error-msg" id="error-checkIn"></span>
-                    </div>
-                    <div class="form-group" id="checkOutGroup">
-                        <label>Дата выезда *</label>
-                        <input type="date" id="checkOut" min="${todayStr}">
-                        <div class="hint">Выберите дату в календаре или введите самостоятельно</div>
-                        <span class="error-msg" id="error-checkOut"></span>
-                    </div>
-                    <button type="submit" class="btn" style="width:100%; margin-top:5px;">Отправить заявку</button>
-                </form>
-                <div class="back-link" id="backToCatalog">← Назад к каталогу</div>
+                </div>
             </div>
             <div class="footer">
-                <div>Контакты: г. Москва, ул. Сладкая, д.7 | круглосуточно | +7 (495) 123-45-67 | info@sweetdreams.ru</div>
+                <div>© Сладкие сны</div>
+                <div class="contacts">
+                    <strong>Контакты</strong><br>
+                    📍 Москва, ул. Сладкая, 7<br>
+                    🕛 круглосуточно<br>
+                    📞 +7 (495) 123-45-67<br>
+                    ✉️ info@sweetdreams.ru
+                </div>
             </div>
         `;
         document.getElementById('app').innerHTML = html;
-
-        let phoneInput = document.getElementById('phone');
-        let firstNameInput = document.getElementById('firstName');
-        let lastNameInput = document.getElementById('lastName');
-        let emailInput = document.getElementById('email');
-        let checkInInput = document.getElementById('checkIn');
-        let checkOutInput = document.getElementById('checkOut');
         
-        setupPhoneInput(phoneInput);
+        let phone = document.getElementById('phone');
+        setupPhoneInput(phone);
         
-        addClearButton(phoneInput, document.getElementById('phoneGroup'));
-        addClearButton(firstNameInput, document.getElementById('firstNameGroup'));
-        addClearButton(lastNameInput, document.getElementById('lastNameGroup'));
-        addClearButton(emailInput, document.getElementById('emailGroup'));
-        addClearButton(checkInInput, document.getElementById('checkInGroup'));
-        addClearButton(checkOutInput, document.getElementById('checkOutGroup'));
-
-        let allInputs = [firstNameInput, lastNameInput, phoneInput, emailInput];
-        allInputs.forEach(inp => {
-            inp.addEventListener('input', () => {
-                let errSpan = document.getElementById(`error-${inp.id}`);
-                if (errSpan) errSpan.innerText = '';
-            });
-        });
+        let ci = setupDateInput('checkInGroup', todayStr, todayStr);
+        let co = setupDateInput('checkOutGroup', todayStr);
         
-        checkInInput.addEventListener('change', () => {
-            document.getElementById('error-checkIn').innerText = '';
-            document.getElementById('error-checkOut').innerText = '';
-        });
-        checkOutInput.addEventListener('change', () => {
-            document.getElementById('error-checkIn').innerText = '';
-            document.getElementById('error-checkOut').innerText = '';
-        });
-
-        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+        document.querySelectorAll('.form-group:not(#checkInGroup):not(#checkOutGroup)').forEach(g => g.style.position = 'relative');
+        addClearButton(document.getElementById('firstName'), document.getElementById('fnG'));
+        addClearButton(document.getElementById('lastName'), document.getElementById('lnG'));
+        addClearButton(phone, document.getElementById('phG'));
+        addClearButton(document.getElementById('email'), document.getElementById('emG'));
+        
+        document.getElementById('bookingForm').onsubmit = (e) => {
             e.preventDefault();
-            let firstName = firstNameInput.value.trim();
-            let lastName = lastNameInput.value.trim();
-            let phone = phoneInput.value.trim();
-            let email = emailInput.value.trim();
-            let checkIn = checkInInput.value;
-            let checkOut = checkOutInput.value;
-
-            let errors = {};
-            
-            if (!validateName(firstName)) errors.firstName = 'Используйте кириллицу, пробелы, точки или тире';
-            if (!validateName(lastName)) errors.lastName = 'Используйте кириллицу, пробелы, точки или тире';
-            if (!validatePhone(phone)) errors.phone = 'Введите 10 цифр — телефон отформатируется в +7(123)456-78-90';
-            if (!validateEmail(email)) errors.email = 'Пример: name@domain.ru';
-            
-            if (!checkIn) {
-                errors.checkIn = 'Выберите дату заезда';
-            }
-            if (!checkOut) {
-                errors.checkOut = 'Выберите дату выезда';
-            }
-            if (checkIn && checkOut && !validateDates(checkIn, checkOut)) {
-                errors.dates = 'Дата выезда должна быть позже даты заезда';
-            }
-
-            document.getElementById('error-firstName').innerText = errors.firstName || '';
-            document.getElementById('error-lastName').innerText = errors.lastName || '';
-            document.getElementById('error-phone').innerText = errors.phone || '';
-            document.getElementById('error-email').innerText = errors.email || '';
-            document.getElementById('error-checkIn').innerText = errors.checkIn || errors.dates || '';
-            document.getElementById('error-checkOut').innerText = errors.checkOut || errors.dates || '';
-
-            if (Object.keys(errors).length > 0) return;
-
-            showMessage(`✅ Заявка на номер "${selectedRoom.categoryName}" успешно отправлена!`);
-            setTimeout(() => {
-                renderCatalog();
-            }, 2000);
-        });
-
-        // Кнопка "Назад к каталогу" — теперь работает
-        document.getElementById('backToCatalog').addEventListener('click', (e) => {
-            e.preventDefault();
-            renderCatalog();
-        });
+            let fn = document.getElementById('firstName').value.trim();
+            let ln = document.getElementById('lastName').value.trim();
+            let ph = phone.value.trim();
+            let em = document.getElementById('email').value.trim();
+            let cin = ci.getValue();
+            let cout = co.getValue();
+            let err = {};
+            if (!validateName(fn)) err.fn = 'Только кириллица, пробелы, точки, тире';
+            if (!validateName(ln)) err.ln = 'Только кириллица, пробелы, точки, тире';
+            if (!validatePhone(ph)) err.ph = 'Формат +7(123)456-78-90 (10 цифр)';
+            if (!validateEmail(em)) err.em = 'example@domain.ru';
+            if (!cin) err.cin = `Введите дату заезда (не раньше ${todayDisplay})`;
+            if (!cout) err.cout = `Введите дату выезда (не раньше ${todayDisplay})`;
+            if (cin && cout && !validateDates(cin, cout)) err.dates = 'Выезд должен быть позже заезда';
+            document.getElementById('errFn').innerText = err.fn || '';
+            document.getElementById('errLn').innerText = err.ln || '';
+            document.getElementById('errPh').innerText = err.ph || '';
+            document.getElementById('errEm').innerText = err.em || '';
+            document.getElementById('errCin').innerText = err.cin || err.dates || '';
+            document.getElementById('errCout').innerText = err.cout || err.dates || '';
+            if (Object.keys(err).length) return;
+            showMessage(`✅ Заявка на номер «${selectedRoom.categoryName}» успешно отправлена!`);
+            setTimeout(() => renderCatalog(), 2000);
+        };
+        document.getElementById('backToCatalog').onclick = () => renderCatalog();
     }
-
     renderCatalog();
 </script>
 </body>
