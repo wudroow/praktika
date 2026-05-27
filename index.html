@@ -488,7 +488,7 @@
                     <div class="form-group" id="phoneGroup">
                         <label>Телефон *</label>
                         <input type="text" id="phone" placeholder="+7(123)456-78-90">
-                        <div class="hint">Вводите только цифры — формат сам появится, Backspace удаляет и скобки</div>
+                        <div class="hint">Только цифры</div>
                         <span class="error-msg" id="error-phone"></span>
                     </div>
                     <div class="form-group" id="emailGroup">
@@ -500,13 +500,13 @@
                     <div class="form-group" id="checkInGroup">
                         <label>Дата заезда *</label>
                         <input type="date" id="checkIn" min="${todayStr}" value="${todayStr}">
-                        <div class="hint">Выберите дату в календаре</div>
+                        <div class="hint">Выберите дату в календаре или введите самостоятельно</div>
                         <span class="error-msg" id="error-checkIn"></span>
                     </div>
                     <div class="form-group" id="checkOutGroup">
                         <label>Дата выезда *</label>
                         <input type="date" id="checkOut" min="${todayStr}">
-                        <div class="hint">Выберите дату в календаре</div>
+                        <div class="hint">Выберите дату в календаре или введите самостоятельно</div>
                         <span class="error-msg" id="error-checkOut"></span>
                     </div>
                     <button type="submit" class="btn" style="width:100%; margin-top:5px;">Отправить заявку</button>
